@@ -24,13 +24,11 @@ public class SplashActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splash);
 
         logo=(ImageView)findViewById(R.id.logo);
-        text = findViewById(R.id.text);
+        text = findViewById(R.id.title);
 
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent i = new Intent(SplashActivity.this,MainActivity.class);
-                startActivity(i);
                 finish();
             }
         },splashTimeOut);

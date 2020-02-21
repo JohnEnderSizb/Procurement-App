@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:gravity="center_horizontal"
     tools:context=".SplashActivity">
 
@@ -11,8 +12,18 @@
         android:id="@+id/logo"
         android:src="@drawable/logo"
         android:layout_width="150dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="150dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal" />
+        android:text="Procurement System"
+        android:textColor="#00FF00"
+        android:gravity="center_horizontal"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:id="@+id/title"/>
 
 
 
