@@ -8,22 +8,31 @@
     android:gravity="center_horizontal"
     tools:context=".SplashActivity">
 
-    <ImageView
-        android:id="@+id/logo"
-        android:src="@drawable/logo"
-        android:layout_width="150dp"
-        android:layout_height="200dp"
-        android:layout_marginTop="150dp"/>
-
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Procurement System"
-        android:textColor="#00FF00"
+        android:layout_height="match_parent"
         android:gravity="center_horizontal"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:id="@+id/title"/>
+        android:background="#FFFFFF"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/logo"
+            android:src="@drawable/logo"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginTop="100dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Procurement System"
+            android:textColor="#162517"
+            android:gravity="center_horizontal"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:id="@+id/title"/>
+
+    </LinearLayout>
 
 
 
