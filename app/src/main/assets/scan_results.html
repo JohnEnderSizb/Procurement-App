@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Untitled</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/fonts/ionicons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="assets/css/styles.min.css">
+
+    <style>
+        body {
+            font-family: "Times New Roman", Times, serif;
+            background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23007CB2%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012'),
+            linear-gradient(to bottom, #ffffff 0%,#e5e5e5 100%);
+            background-repeat: no-repeat, repeat;
+            background-position: right .7em top 50%, 0 0;
+            background-size: .65em auto, 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container" id="results" style="min-height: 100vh; display: none">
+        <h3 class="text-black text-center text-capitalize mt-2 text-primary" style="text-shadow: #213458 0.05em 0.05em 0.06em;" id="title">Status</h3>
+        <hr>
+        <br>
+        <br>
+        <h2 class="text-center text-success">Success!</h2>
+    </div>
+
+    <div class="container" id="none" style="min-height: 100vh; display: none">
+        <h3 class="text-black text-center text-capitalize mt-2 text-primary" style="text-shadow: #213458 0.05em 0.05em 0.06em;" >Status</h3>
+        <hr>
+        <br>
+        <br>
+        <h2 class="text-center text-danger">An Error Occured!</h2>
+    </div>
+
+    <div class="container" style="position: fixed; bottom: 0; width: 100vw; left: 0; height: 60px; background: #213458">
+        <table class="table table-borderless">
+            <tr>
+                <td>
+                    <button class="btn btn-outline-primary" onclick="home()">Home</button>
+                </td>
+                <td class="text-right">
+                    <button class="btn btn-outline-primary" onclick="scanNext()">Scan Next</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+
+
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/masterscript.js"></script>
+
+    <script>
+        function scanNext(){
+            return JSReceiver.scanNext();
+        }
+
+        function home(){
+            return JSReceiver.home();
+        }
+
+
+        function getQrCode(){
+            return JSReceiver.getQrCode();
+        }
+
+        function getUserEmail(){
+            return JSReceiver.getUserEmail()
+        }
+
+        $(document).ready(function() {
+            collectAsset()
+        });
+
+        function collectAsset(){
+            JSReceiver.openProgDialog();
+            $.ajax({
+                url:DOMAIN + "app/assets/collect",
+                type:"POST",
+                data:{
+                    qrCode: getQrCode(),
+                    email: getUserEmail(),
+                },
+                success:function(response) {
+                    console.log(response);
+                    JSReceiver.closeProgDialog();
+                    if(response.outcome == "success") {
+                        //display
+                        $('#results').show('fast');
+
+                    }
+                    else if (response.outcome == "none"){
+                        $('#none').show('fast');
+                    }
+
+                },
+                error:function(){
+                    JSReceiver.closeProgDialog();
+                    JSReceiver.openErrorDialog();
+                }
+            });
+
+        }
+    </script>
+
+</body>
+
+</html>
